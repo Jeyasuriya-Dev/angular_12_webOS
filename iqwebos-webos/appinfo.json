@@ -1,0 +1,25 @@
+{
+  "id": "com.smarttv.launchapp",
+  "version": "1.0.1",
+  "vendor": "MRRIDSYS TECHNOLOGIES Pvt.Ltd",
+  "type": "web",
+  "main": "www/index.html",
+  "title": "IQ WebOS Player",
+  "icon": "icon.png",
+  "requiredPermissions": [
+    "accesswebosservice",
+    "public",
+    "accessibility",
+    "fullscreen"
+  ],
+  "permissions": [
+    "systeminfo",
+    "network.query",
+    "network.management",
+    "network"
+  ],
+  "visible": true,
+  "inspectable": true,
+  "fullscreen": true,
+  "noWindow": false
+}

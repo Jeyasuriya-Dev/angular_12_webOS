@@ -1,0 +1,195 @@
+
+.drag-content {
+  // padding: 2px;
+  min-height: 100vh;
+  min-width: 100vw;
+}
+
+.grid-item {
+  // border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  font-weight: bold;
+  cursor: move;
+}
+
+.screen-container {
+  position: relative;
+  /* allows scrollers to overlay */
+  width: 100%;
+  height: 100%;
+}
+
+.download-spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(0, 217, 255, 0.512);
+    border-top-color: #00e5ff;
+    border-radius: 100%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.progress-ring {
+  width: 60px;
+  height: 60px;
+}
+
+
+
+.ticker-bar {
+  position: absolute;
+  /* overlay on top of grid */
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  /* don’t block video or media clicks */
+}
+
+.top-ticker {
+  top: 0;
+}
+
+.bottom-ticker {
+  bottom: 0;
+}
+
+.scroller-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.scroller-wrapper.top {
+  top: 0;
+}
+
+.scroller-wrapper.bottom {
+  bottom: 0;
+}
+
+.scroller-logo {
+  width: 60px;
+  height: 60px;
+  margin-left: 10px;
+  object-fit: contain;
+}
+
+.scroller-track {
+  flex: 1;
+  overflow: hidden;
+}
+
+.scroller-text {
+  white-space: nowrap;
+  animation: scroll-left linear infinite;
+}
+
+
+
+.no-media-wrapper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center,
+      #073b63,
+      #052a49 60%,
+      #042235 100%);
+  z-index: 999;
+}
+
+/* Glass/glow card styles */
+.no-media-card {
+  width: 55%;
+  max-width: 780px;
+  padding: 50px 27px;
+  background: rgba(6, 36, 66, 0.7);
+  border-radius: 25px;
+  text-align: center;
+  color: #ecfaff;
+  border: 2px solid rgba(0, 180, 255, 0.55);
+
+  /* glowing border */
+  box-shadow:
+    0 0 15px rgba(0, 198, 255, 0.45),
+    0 0 30px rgba(0, 198, 255, 0.25);
+
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.9s ease-out;
+}
+
+/* info icon */
+.no-media-card .icon {
+  font-size: 48px;
+  margin-bottom: 40px;
+}
+
+/* title */
+.no-media-card .title {
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #aee6ff;
+}
+
+/* subtitle */
+.no-media-card .subtitle {
+  font-size: 18px;
+  margin-bottom: 25px;
+  opacity: 0.85;
+}
+
+/* Neon Loading Bar */
+.neon-loader {
+  width: 260px;
+  height: 6px;
+  background: #1a1a1a;
+  border-radius: 10px;
+  margin-top: 35px;
+  overflow: hidden;
+  margin: 0 auto;
+
+  .bar {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, #00faff, #44ffe7, #00faff);
+    animation: loaderAnim 3s infinite linear;
+  }
+}
+
+@keyframes loaderAnim {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+/* smooth fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

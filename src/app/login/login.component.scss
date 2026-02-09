@@ -1,0 +1,182 @@
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    padding: 1em;
+}
+
+.example-full-width {
+    width: 100%;
+}
+
+
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+#submit-button:disabled {
+    color: #fff;
+}
+
+
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #224b72, #0c3552);
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0px;
+    left: 0;
+    z-index: 3;
+    padding: 20px;
+}
+
+.card {
+    background: #0c3552;
+    border-radius: 20px;
+    padding: 40px 50px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(0, 200, 255, 0.4);
+    border: 2px solid rgba(0, 200, 255, 0.6);
+    backdrop-filter: blur(8px);
+    // animation: glow 2s infinite alternate;
+    align-items: center;
+}
+
+.icon {
+    // animation: pulse 1.5s infinite;
+    color: #00c8ff;
+    font-weight: 800;
+    font-size: xxx-large;
+    margin-bottom: 0.3em;
+    margin-top: -0.3em;
+    padding: 0.6em;
+
+}
+
+.title {
+    font-size: 42px;
+    // font-weight: bold;
+    margin-bottom: 1em;
+    // letter-spacing: 1px;
+    color: #00c8ff;
+    // animation: fadeIn 2s ease-in-out infinite alternate;
+
+}
+
+.text {
+    font-size: 18px;
+    color: #ddd;
+    line-height: 1.6;
+    text-transform: capitalize;
+}
+
+/* Animations */
+@keyframes glow {
+    from {
+        box-shadow: 0 0 15px rgba(0, 200, 255, 0.2);
+    }
+
+    to {
+        box-shadow: 0 0 35px rgba(0, 200, 255, 0.7);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0.7;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Container for the input */
+.custom-input-group {
+    display: flex;
+    flex-direction: column;
+    /* Adjust based on your layout */
+    margin-bottom: 20px;
+    text-align: start;
+}
+
+/* The Label */
+.custom-label {
+    color: aliceblue;
+    font-size: 14px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+/* The Input Box */
+.custom-input {
+    background: rgba(255, 255, 255, 0.1);
+    /* Transparent glass look */
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+/* Placeholder color */
+.custom-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Focus State - Glow Effect */
+.custom-input:focus {
+    border-color: #00d2ff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+}
+
+/* Hint and Error text */
+.custom-hint {
+    margin-top: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 12px;
+}
+
+.custom-error {
+    margin-top: 6px;
+    color: #ff5252;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+#submit-button:disabled {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+}

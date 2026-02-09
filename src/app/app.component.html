@@ -1,0 +1,24 @@
+<router-outlet></router-outlet>
+<ng-template #DeviceSettings>
+    <h1 mat-dialog-title style="color: #ff4081; text-align: center;">{{!isPendrive ? "Device Settings":"Pendrive        Settings"}}</h1>
+    <mat-dialog-content class="mat-typography" style="overflow: hidden;">
+        <app-menu1 *ngIf="isPendrive"></app-menu1>
+        <app-menu2 *ngIf="!isPendrive"></app-menu2>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #exitconfirm>
+    <h2 mat-dialog-title class="text-center" style="color: #ff4081;">Are you sure ?</h2>
+    <mat-dialog-content class="mat-typography">
+        <h4 class="text-center">Do you want to exit the application?</h4>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close cdkFocusInitial>
+            Close
+        </button>
+        <button mat-raised-button [mat-dialog-close]="true">Yes, exit</button>
+    </mat-dialog-actions>
+</ng-template>

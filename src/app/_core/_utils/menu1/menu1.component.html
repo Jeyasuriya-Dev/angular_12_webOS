@@ -1,0 +1,31 @@
+<mat-dialog-content class="mat-typography">
+
+    <mat-slide-toggle labelPosition="before"
+        style="background-color: cornsilk; width: 100%; padding: 10px; border-radius: 4px; margin-bottom: 0.5em;"
+        [(ngModel)]="isCopyContent" (change)="onChangePendriveSetting($event.checked, 'CopyContent')">
+        Copy Content
+    </mat-slide-toggle>
+
+    <mat-slide-toggle labelPosition="before"
+        style="background-color: cornsilk; width: 100%; padding: 10px; border-radius: 4px;"
+        [(ngModel)]="isClearCopyContent" (change)="onChangePendriveSetting($event.checked, 'ClearCopyContent')">
+        Clear & Copy Content
+    </mat-slide-toggle>
+    <h1 style="margin: 0;" mat-dialog-title>Image Delay <span style="font-size: medium;">(Sec)</span> </h1>
+    <div class="counter">
+        <button mat-raised-button (click)="changeValue(-1)">-</button>
+        <input type="number" disabled [(ngModel)]="imageDelay" min="0">
+        <button mat-raised-button (click)="changeValue(1)">+</button>
+    </div>
+    <!-- <button mat-raised-button style="position: absolute; bottom: 0.79em; left: 1em;" (click)="exitPendrive()">
+        Exit pendrive
+    </button>
+    <button mat-raised-button style="position: absolute; bottom: 0.79em; right: 7.4em;" (click)="clearDownloads()">
+        Clear Storage
+    </button> -->
+
+    <button mat-raised-button style="position: absolute; bottom: 0.79em; right: 7.4em;" (click)="exitPendrive()">
+        Exit pendrive mode
+    </button>
+
+</mat-dialog-content>

@@ -1,0 +1,16 @@
+<div class="youtube-player">
+    <iframe *ngIf="ytUrl" [src]="ytUrl" width="100%" height="100%" frameborder="0"
+        allow="autoplay; encrypted-media; fullscreen" allowfullscreen>
+    </iframe>
+    <!-- <p>{{ status }}</p> -->
+</div>
+
+<div class="overlay" *ngIf="isOpenSwalAlert">
+    <div class="card">
+        <!-- <mat-icon class="icon">info</mat-icon> -->
+        <span class="icon">⚠️</span>
+        <h1 class="title">{{ !isOpenSwalAlert ? "You are Online" :"You are offline"}}</h1>
+        <p class="text">{{ !isOpenSwalAlert ? "Reconnecting...":"Please check your internet connection"}}.</p>
+        <!-- <span class="text">{{contact}}</span> -->
+    </div>
+</div>

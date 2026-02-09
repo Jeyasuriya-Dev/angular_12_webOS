@@ -1,0 +1,20 @@
+<!-- contentplayer.component.html -->
+<div [ngSwitch]="filesData[currentIndex]?.type" >
+    <img *ngSwitchCase="'image'" style="height: 100%; width: 100%; object-fit: fill !important;"
+        [src]="filesData[currentIndex]?.downloadedUrl ||filesData[currentIndex].Url" alt="image" class="media-image" />
+
+    <video #videoEl *ngSwitchCase="'video'" preload="none"
+        style="min-height: 100%; min-width: 100%; object-fit: fill !important;" id="media-video"
+        [src]="filesData[currentIndex]?.downloadedUrl || filesData[currentIndex].Url" class="media-video" autoplay muted
+        playsinline [loop]="filesData.length === 1 && splitScreenList.length === 1"></video>
+
+    <ng-container *ngSwitchCase="'youtube'">
+        <app-youtube-player *ngIf="playerRecreateKey"
+            [url]="filesData[currentIndex]?.downloadedUrl || filesData[currentIndex].Url" [index]="currentIndex"
+            [loop]="filesData.length === 1 && splitScreenList.length === 1" (videoEnded)="onVideoEnded($event, 'yt')">
+        </app-youtube-player>
+    </ng-container>
+    <app-pdf-viewer *ngSwitchCase="'pdf'" [loop]="filesData.length === 1 && splitScreenList.length === 1" (pdfEnded)="onVideoEnded($event,'pdf')"
+        [url]="filesData[currentIndex]?.downloadedUrl || filesData[currentIndex].Url">
+    </app-pdf-viewer>
+</div>

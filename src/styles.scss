@@ -1,0 +1,209 @@
+html,
+body {
+  font-family: "DMSans", sans-serif !important;
+}
+
+.mat-h1,
+.mat-headline-5,
+.mat-typography .mat-h1,
+.mat-typography .mat-headline-5,
+.mat-typography h1 {
+  line-height: normal !important;
+}
+
+:root {
+  --color-primary: #378cee;
+}
+
+.mat-mdc-raised-button.mdc-ripple-upgraded--background-focused,
+.mat-mdc-raised-button:not(.mdc-ripple-upgraded):focus {
+  box-shadow: var(--mdc-protected-button-focus-container-elevation, 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12));
+  background-color: #ff4081 !important;
+  color: #fff !important;
+  font-weight: bold !important;
+}
+
+
+.usermanual-dialog .mat-dialog-container {
+  padding: 0 !important;
+  background: black;
+  overflow: hidden;
+}
+
+
+.toast-container .ngx-toastr {
+  min-width: 350px !important;
+  // max-width: 450px !important; 
+  margin-top: 5%;
+}
+
+::ng-deep ngx-extended-pdf-viewer {
+  height: 100vh !important;
+  width: 100% !important;
+}
+
+iframe {
+  height: 100vh !important;
+  width: 100vw !important;
+}
+
+gridster {
+  background-color: black !important;
+}
+
+gridster .gridster-column,
+gridster .gridster-row,
+gridster-item,
+gridster-item.gridster-item-resizing,
+gridster-item.gridster-item-moving {
+  transition: unset !important;
+}
+
+/* General Button Overrides */
+.mat-button,
+.mat-raised-button,
+.mat-unelevated-button,
+.mat-outlined-button {
+  height: 30px !important;
+  border: 2px solid hsl(0, 0%, 100%);
+}
+
+/* Menu Specific Button Overrides */
+.menu .mat-button,
+.menu .mat-raised-button,
+.menu .mat-unelevated-button,
+.menu .mat-outlined-button {
+  height: auto !important;
+  border-radius: 1em;
+}
+
+/* Focused State for Raised Buttons in Menu */
+.menu .mat-raised-button:focus,
+.menu .mat-raised-button.mat-focused {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  color: #fff !important;
+  border: 2px solid #61aff8;
+  font-weight: 500;
+  animation: glow 1s forwards;
+}
+
+/* Default State for Raised Buttons in Menu */
+.menu .mat-raised-button {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(165deg, #2e6ba3, #0c3552, #0c3552) !important;
+  color: #fff !important;
+  font-weight: 400;
+  border: 2px solid #2e6ba3;
+  font-size: large;
+}
+
+@keyframes glow {
+  from {
+    box-shadow:
+      0 0 10px rgba(97, 175, 248, 0.4),
+      0 0 18px rgba(97, 175, 248, 0.5);
+  }
+
+  to {
+    box-shadow:
+      0 0 10px rgba(97, 175, 248, 0.4),
+      0 0 18px rgba(97, 175, 248, 0.5);
+
+  }
+}
+
+/* Container and Surface adjustments */
+.cdk-overlay-pane.userManual .mat-dialog-container {
+  overflow: hidden;
+  /* In legacy, the gradient and border go on the container itself */
+  background: linear-gradient(165deg, #1e557c, #0c3552) !important;
+  border: #0084ff 1px solid;
+  border-radius: 10px !important;
+}
+
+/* Dialog Title */
+.mat-dialog-title {
+  color: #fff !important;
+}
+
+/* Specific Header tags inside content */
+.mat-dialog-content>h4 {
+  color: #fff !important;
+}
+
+/* General Container override (if not using the .userManual class) */
+.mat-dialog-container {
+  background: linear-gradient(165deg, #1e557c, #0c3552) !important;
+  border: #0084ff 1px solid;
+  border-radius: 10px !important;
+}
+
+#viewerContainer {
+  overflow: hidden !important;
+}
+
+/* --- Global Material Button Overrides (Angular 12) --- */
+
+.mat-button,
+.mat-raised-button,
+.mat-unelevated-button,
+.mat-stroked-button {
+  height: 30px !important;
+  border: 2px solid hsl(0, 0%, 100%);
+}
+
+/* --- Menu Specific Button Logic --- */
+
+
+
+.mat-button,
+.mat-raised-button,
+.mat-unelevated-button,
+.mat-stroked-button {
+  height: auto !important;
+  border-radius: 1em;
+}
+
+.mat-raised-button {
+  // Default State
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12) !important;
+  background: linear-gradient(165deg, #2e6ba3, #0c3552, #0c3552) !important;
+  color: #fff !important;
+  font-weight: 400;
+  border: 2px solid #2e6ba3;
+  font-size: large;
+
+
+
+  // Focus & Glow State
+  &:focus,
+  &.mat-focused {
+    color: #fff !important;
+    border: 2px solid #61aff8;
+    font-weight: 500;
+    animation: glow 1s forwards;
+  }
+}
+
+
+/* --- Glow Animation Definition --- */
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 5px #2e6ba3;
+  }
+
+  100% {
+    box-shadow: 0 0 20px #61aff8;
+  }
+}
+
+.pdfViewer {
+  display: flex !important;
+  justify-content: center !important;
+}

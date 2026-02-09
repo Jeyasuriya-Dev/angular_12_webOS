@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns:tizen="http://tizen.org/ns/widgets"
+    xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/tizen" version="1.1.0" viewmodes="maximized">
+    <tizen:application id="OMBoEKMi2M.tizen" package="OMBoEKMi2M" required_version="2.3"/>
+    <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
+    <content src="www/index.html"/>
+    <icon src="icon.png"/>
+    <name>IQ_WORLD_PLAYER</name>
+    <!-- Profile (Samsung Smart TV) -->
+    <tizen:profile name="tv-samsung"/>
+    <!-- Metadata -->
+    <tizen:metadata key="http://tizen.org/metadata/app_ui_type/base_screen_resolution" value="extensive"/>
+    <!-- Features -->
+    <feature name="http://tizen.org/feature/screen.size.all"/>
+    <!-- Access permissions -->
+    <allow-navigation href="*"/>
+    <access origin="*" subdomains="true"/>
+    <access origin="https://ds.iqtv.in" subdomains="true"/>
+    <access origin="https://www.youtube.com" subdomains="true"/>
+
+    <!-- Privileges -->
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <tizen:privilege name="http://tizen.org/privilege/systeminfo"/>
+    <tizen:privilege name="http://tizen.org/privilege/appmanager.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/healthinfo"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/medicalinfo"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/tv.deviceinfo"/>
+    <tizen:privilege name="http://tizen.org/privilege/system"/>
+    <tizen:privilege name="http://tizen.org/privilege/systemsettings"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.avplay"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.inputdevice"/>
+    <tizen:privilege name="http://tizen.org/privilege/mediaplayer"/>
+    <tizen:privilege name="http://tizen.org/privilege/mediaplayer.play"/>
+    <tizen:privilege name="http://tizen.org/privilege/mediacontroller.client"/>
+    <tizen:privilege name="http://tizen.org/privilege/network.get"/>
+    <tizen:privilege name="http://tizen.org/privilege/mediacontent"/>
+    <tizen:privilege name="http://tizen.org/privilege/information"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/appcommon"/>
+    <tizen:privilege name="http://tizen.org/privilege/tv.info"/>
+    <tizen:privilege name="http://developer.samsung.com/privilege/productinfo"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.read"/>
+    <tizen:privilege name="http://tizen.org/privilege/filesystem.write"/>
+    <tizen:privilege name="http://tizen.org/privilege/application.launch"/>
+    <tizen:privilege name="http://tizen.org/privilege/externalstorage" />
+    <tizen:privilege name="http://tizen.org/privilege/mediastorage"/>
+    <tizen:privilege name="http://tizen.org/privilege/download"/>
+    <tizen:privilege name="http://tizen.org/privilege/content.read" />
+    <tizen:privilege name="http://tizen.org/privilege/content.write" />
+    <tizen:privilege name="http://tizen.org/privilege/tv.audio"/>
+
+    <tizen:privilege name="http://tizen.org/privilege/internet"/>
+    <access origin="https://www.youtube.com" subdomains="true"/>
+    <access origin="https://www.youtube-nocookie.com" subdomains="true"/>
+    <access origin="*" subdomains="true"/>
+
+    <tizen:privilege name="http://developer.samsung.com/privilege/avplay"/>
+
+    <!-- Settings -->
+    <tizen:setting screen-orientation="landscape" context-menu="enable" background-support="disable" encryption="disable" install-location="auto" hwkey-event="enable"/>
+</widget>

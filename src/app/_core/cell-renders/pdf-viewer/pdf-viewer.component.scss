@@ -1,0 +1,22 @@
+.pdf-container {
+    height: 100vh; // full viewport height
+    width: 100vw; // full width
+    margin: 0;
+    padding: 0;
+    overflow: hidden; // avoid window scrollbar
+}
+
+ngx-extended-pdf-viewer {
+    height: 100% !important;
+    width: 100% !important;
+    display: block;
+}
+
+#viewer {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+#viewer page {
+    height: 100vh !important;
+}

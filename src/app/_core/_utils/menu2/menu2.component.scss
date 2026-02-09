@@ -1,0 +1,144 @@
+.icon-container {
+  width: 50px;
+  /* Adjust icon size */
+  height: 50px;
+  margin-right: 15px;
+}
+
+.radio-icon {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  /* Ensures that the icon retains its aspect ratio */
+}
+
+
+.device-details {
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  // max-width: 800px;
+  margin: 20px;
+}
+
+.menu-group{
+  min-height: 200px;
+}
+
+.card-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.icon-container {
+  margin-right: 20px;
+}
+
+.device-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+h3 {
+  font-size: 22px;
+  color: #333;
+  margin: 0;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  //   font-weight: bold;
+  color: #555;
+}
+
+.info-value {
+  color: #333;
+}
+
+.info-value.null {
+  color: #999;
+}
+
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.mat-mdc-form-field {
+  margin-top: 16px;
+}
+
+.mat-mdc-radio-button~.mat-mdc-radio-button {
+  margin-left: 16px;
+}
+
+
+.logout-loader {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #224b72, #0c3552);
+  z-index: 9999999 !important;
+  opacity: 40%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 🌌 Neon Spinner */
+.spinner {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto;
+  border-radius: 50%;
+  position: relative;
+  animation: spin 1.2s linear infinite;
+}
+
+/* Outer glow ring */
+.spinner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4px solid #2d669b;
+}
+
+/* Moving neon arc */
+.spinner::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border-radius: 50%;
+  border-top: 4px solid #9bc0e4;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  box-shadow: 0 0 12px #2e679d;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

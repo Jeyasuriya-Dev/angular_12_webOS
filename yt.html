@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>YouTube Player</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: #000;
+      overflow: hidden;
+      font-family: "Segoe UI", Roboto, sans-serif;
+    }
+
+    #player {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="player"></div>
+  <script>
+    const tag = document.createElement("script");
+    tag.src = "https://www.youtube.com/iframe_api";
+    document.head.appendChild(tag);
+
+    const params = new URLSearchParams(window.location.search);
+    const videoId = params.get("v");
+    const urlTime = params.get("t");
+    const loopParam = params.get("loop") === "1";
+
+    if (!videoId) {
+      document.body.innerHTML =
+        "<h2 style='color:white;text-align:center;margin-top:20%;font-family:sans-serif;'>Missing video ID</h2>";
+      throw new Error("Missing video ID");
+    }
+
+    let player;
+    let timeUpdateInterval = null;
+
+    function onYouTubeIframeAPIReady() {
+      player = new YT.Player("player", {
+        videoId,
+        playerVars: {
+          autoplay: 1,
+          mute: 1,
+          controls: 0,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          loop: loopParam ? 1 : 0,
+          ...(loopParam ? {
+            playlist: videoId
+          } : {}),
+        },
+        events: {
+          onReady: onPlayerReady,
+          onStateChange: onPlayerStateChange,
+          onError: onPlayerError,
+        },
+      });
+    }
+
+    function onPlayerReady(event) {
+      const isFirst = sessionStorage.getItem("isFirst");
+      const savedTime = localStorage.getItem(videoId);
+      let startTime = 0;
+
+
+      if (urlTime) {
+        startTime = parseFloat(urlTime);
+      } else if (!isFirst && savedTime) {
+        startTime = parseFloat(savedTime);
+        sessionStorage.setItem("isFirst", "1");
+      }
+
+      if (startTime > 0) {
+        player.seekTo(startTime, true);
+      }
+      event.target.playVideo();
+    }
+
+    const storeCurrentTime = () => {
+      if (player && player.getCurrentTime) {
+        const currentTime = player.getCurrentTime();
+        if (currentTime > 0) {
+          localStorage.setItem(videoId, currentTime);
+        }
+      }
+    };
+
+    function onPlayerStateChange(event) {
+      if (timeUpdateInterval && event.data !== YT.PlayerState.PLAYING) {
+        clearInterval(timeUpdateInterval);
+        timeUpdateInterval = null;
+      }
+
+      if (event.data === YT.PlayerState.PLAYING) {
+        setTimeout(() => {
+          try {
+            if (player.isMuted()) player.unMute();
+          } catch (e) {
+            console.warn("Could not unmute player:", e);
+          }
+        }, 1000);
+
+        window.parent.postMessage({
+          type: "YT_VIDEO_STARTED",
+          videoId
+        }, "*");
+
+
+        if (!timeUpdateInterval) {
+          timeUpdateInterval = setInterval(storeCurrentTime, 1000);
+        }
+      }
+
+      if (event.data === YT.PlayerState.ENDED) {
+        localStorage.removeItem(videoId);
+        window.parent.postMessage({
+          type: "YT_VIDEO_ENDED",
+          videoId
+        }, "*");
+        if (loopParam) player.playVideo();
+      }
+    }
+
+    function onPlayerError(e) {
+      document.body.innerHTML =
+        "<h2 style='color:white;text-align:center;margin-top:20%;font-family:sans-serif;'>Video failed to load.</h2>";
+      console.error("YouTube Player Error:", e.data);
+      window.parent.postMessage({
+        type: "YT_VIDEO_ENDED",
+        videoId
+      }, "*");
+    }
+
+
+
+
+    window.addEventListener("offline", () => {
+      if (player && player.pauseVideo) player.pauseVideo();
+      window.parent.postMessage({
+        type: "YT_VIDEO_OFFLINE",
+        videoId
+      }, "*");
+    });
+
+    window.addEventListener("online", () => {
+      window.parent.postMessage({
+        type: "YT_VIDEO_ONLINE",
+        videoId
+      }, "*");
+      setTimeout(() => {
+        if (player && player.getPlayerState() !== YT.PlayerState.PLAYING) {
+          player.playVideo();
+        }
+      }, 2000);
+    });
+  </script>
+</body>
+
+</html>

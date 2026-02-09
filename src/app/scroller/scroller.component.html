@@ -1,0 +1,14 @@
+<div *ngIf="stickyLogo" class="sticky-logo d-flex align-items-center">
+  <img #logoImg [src]="stickyLogo" class="img-fluid"  alt="logo" />
+</div>
+
+<div *ngIf="scrollers.length" #scrollWrapper class="scroll-wrapper" [ngClass]="{'hidden-init': !animationReady}">
+  <div #scrollTrack class="scroll-track" [class.left]="scrollers[0].direction === 'left'">
+    <div class="scroll-item" *ngFor="let s of scrollers; let i = index" [style.color]="s.fncolor"
+      [style.fontSize]="s.fnsize + 'px'" [style.fontFamily]="s.loadedFont" [style.background]="s.bgcolor"
+      [style.padding]="calcPadding(s)">
+      <div class="logo-trigger" [attr.data-index]="i"></div>
+      <div>{{ s.message }}</div>
+    </div>
+  </div>
+</div>

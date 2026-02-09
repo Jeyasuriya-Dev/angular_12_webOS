@@ -1,0 +1,26 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "baseUrl": "./",
+        "outDir": "./dist/out-tsc",
+
+        "target": "ES5",
+        "module": "ES2020",
+
+        "downlevelIteration": true,
+        "importHelpers": true,
+
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+
+        "lib": ["dom", "es2015", "dom.iterable"],
+        "useDefineForClassFields": false
+    },
+    "angularCompilerOptions": {
+        "strictInjectionParameters": true,
+        "strictInputAccessModifiers": true,
+        "strictTemplates": true
+    }
+}

@@ -1,0 +1,105 @@
+<!-- splitscreen.component.html -->
+<div class="screen-container">
+    <!-- NO MEDIA AVAILABLE – ULTRA PREMIUM UI -->
+    <div *ngIf="noMediaAvailable" class="no-media-wrapper">
+        <div class="no-media-card">
+            <div class="icon">📁</div>
+            <div class="title">No Media Available…!</div>
+            <div class="subtitle">Please wait while your device receives media files.</div>
+            <div class="neon-loader">
+                <div class="bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API FAILED + NO MEDIA FALLBACK -->
+    <!-- <div *ngIf="apiFailedNoMediaFallback" class="no-media-wrapper">
+        <img [src]="device?.isVertical	? 'assets/images/nonetwork_Vertic.png'	: 'assets/images/nonetwork_Horiz.png'"
+            style="width:100%;height:100%;object-fit:fill;" />
+    </div> -->
+
+    <gridster [options]="options" class="drag-content drag-handler">
+        <gridster-item *ngFor="let item of zoneinfo; trackBy: trackById" [item]="item" class="grid-item">
+            <div class="widget-content">
+                <app-content-player [filesData]="item?.media_list" [splitScreenList]="splitScreenList"
+                    [attr.key]="item.id + '-' + item.media_list?.length" [zoneId]="item.id"
+                    (zoneComplete)="onZoneComplete($event)"></app-content-player>
+            </div>
+        </gridster-item>
+    </gridster>
+
+    <div *ngIf="!isPendriveMode" class="px-4"
+        style="position: absolute;bottom: 8em;z-index: 1;right: 1.5em;width:70px;z-index:10;height:70px;display:flex;align-items:center;justify-content:center;">
+
+    </div>
+
+    <div *ngIf="!isPendriveMode" class="px-4" style="position: absolute;bottom: 4em;z-index: 1;right: 1.5em;
+        width:70px;z-index:99999;height:70px;display:flex;align-items:center;justify-content:center;">
+        <!-- DOWNLOAD IN PROGRESS -->
+        <div *ngIf="isDownloading && status === 'ONLINE'" class="progress-ring">
+            <svg width="70" height="70">
+                <!-- background ring -->
+                <circle cx="35" cy="35" r="30" stroke="#2e2e2e" stroke-width="6" fill="none" />
+
+                <!-- progress ring -->
+                <circle cx="35" cy="35" r="30" stroke="#00e5ff" stroke-width="6" fill="none" stroke-linecap="round"
+                    [attr.stroke-dasharray]="188" [attr.stroke-dashoffset]="188 - (188 * downloadProgress / 100)"
+                    transform="rotate(-90 35 35)" />
+            </svg>
+        </div>
+
+        <!-- NORMAL ONLINE / OFFLINE ICON -->
+        <ng-container *ngIf="!isDownloading" [ngSwitch]="status">
+            <img [ngClass]="status" *ngSwitchCase="'ONLINE'" style="width: 70px;" src="assets/images/ONLINE.png"
+                alt="⦿">
+            <img [ngClass]="status" *ngSwitchCase="'OFFLINE'" style="width: 70px;" src="assets/images/OFFLINE.png"
+                alt="⦿">
+        </ng-container>
+    </div>
+    <ng-container *ngIf="rebuildScroller">
+        <!-- Top Scroller -->
+        <app-scroller *ngIf="topScrollers.length && !isPendriveMode && status === 'ONLINE'" [scrollers]="topScrollers"
+            class="ticker-bar top-ticker">
+        </app-scroller>
+        <!-- Bottom Scroller -->
+        <app-scroller *ngIf="bottomScrollers.length && !isPendriveMode && status === 'ONLINE'"
+            [scrollers]="bottomScrollers" class="ticker-bar bottom-ticker">
+        </app-scroller>
+    </ng-container>
+</div>
+
+<ng-template #exitconfirm>
+    <h2 mat-dialog-title class="text-center" style="color: #ff4081;">Are you sure ?</h2>
+    <mat-dialog-content class="mat-typography">
+        <h4 class="text-center">Do you want to exit the application?</h4>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close cdkFocusInitial>
+            Close
+        </button>
+        <button mat-raised-button [mat-dialog-close]="true">Yes, exit</button>
+    </mat-dialog-actions>
+</ng-template>
+<ng-template #pendriveErrorDialog let-data>
+    <h2 mat-dialog-title>{{ data.title }}</h2>
+    <mat-dialog-content>
+        <p style="color: white;">{{ data.message }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button (click)="exitPendrive()">Exit pendrive mode</button>
+    </mat-dialog-actions>
+</ng-template>
+<!-- <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+
+<div *ngIf="images.length === 0 && !errorMsg">
+    No images found in downloads.
+</div>
+
+<div *ngIf="images.length > 0" class="images">
+    <div *ngFor="let img of images" class="image-item">
+        <img [src]="img.uri" [alt]="img.name" />
+
+        <video [src]="img.uri" muted autoplay class="image-item"></video>
+        <p>{{ img.name }}</p>
+    </div>
+</div> -->

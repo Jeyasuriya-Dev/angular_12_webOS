@@ -1,0 +1,23 @@
+.counter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: rgb(131, 181, 245);
+    padding: 10px;
+    border-radius: 4px;
+    flex-wrap: wrap;
+
+    button {
+        font-size: 1em;
+    }
+
+    input:disabled {
+        text-align: center;
+        color: #ff4081;
+        font-weight: bold;
+        background-color: white;
+        width: 70%;
+        font-size: larger;
+    }
+}

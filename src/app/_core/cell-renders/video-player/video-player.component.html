@@ -1,0 +1,8 @@
+<div class="video-container" *ngIf="isAvplay">
+  <object id="avplayer" type="application/avplayer" class="video-element"></object>
+</div>
+
+<div *ngIf="!isAvplay" style="height: 100vh; width: 100vw;" class="video-container">
+  <video class="video-element" id="media-video" preload="none" autoplay muted playsinline loop>
+  </video>
+</div>

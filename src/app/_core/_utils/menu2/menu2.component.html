@@ -1,0 +1,143 @@
+<ng-template #devcieinfo>
+    <h2 mat-dialog-title style="color: #ff4081; text-align: center;">Device Info</h2>
+    <div class="device-details" *ngIf="deviceInfo?.username">
+        <div class="card-content">
+            <!-- Device Title and Icon -->
+            <div class="header">
+                <h3>Device Details: {{ deviceInfo.username }}</h3>
+            </div>
+
+            <!-- Device Details -->
+            <div class="info-row">
+                <span class="info-label">Model:</span>
+                <span class="info-value">{{ deviceInfo.modelname }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Customer name:</span>
+                <span class="info-value">{{ deviceInfo.clientname +" ("+deviceInfo.client_id+")" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Screen:</span>
+                <span class="info-value">{{ deviceInfo.orientation=="9:16"?"Vertical" :"Horizontal" }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Version:</span>
+                <span class="info-value">{{ deviceInfo.version || 'Not Available' |titlecase }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">State :</span>
+                <span class="info-value">{{ deviceInfo.state_name +" ("+deviceInfo.state_id+")" |titlecase }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">District :</span>
+                <span class="info-value">{{ deviceInfo.district_name +" ("+deviceInfo.district_id+")" |titlecase
+                    }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">City :</span>
+                <span class="info-value">{{ deviceInfo.city_name +" ("+deviceInfo.city_id+")" |titlecase }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Location:</span>
+                <span class="info-value">{{ deviceInfo.location +" ("+deviceInfo.locationid+")" |titlecase }}</span>
+            </div>
+
+            <div class="info-row">
+                <span class="info-label">IPK Version:</span>
+                <span class="info-value">{{ deviceInfo.apkVersion!="null" ?deviceInfo.apkVersion: version || 'v1.0.3'
+                    }}</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Device Status:</span>
+                <span class="info-value">{{ deviceInfo.device_status ? 'Active' : 'Inactive' }}</span>
+            </div>
+            <div class="info-row" *ngIf="storage?.usedGB">
+                <span class="info-label">Device Storage:</span>
+                <span class="info-value"> {{storage.usedGB+"/"+storage.totalGB}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="device-details" *ngIf="!deviceInfo?.username">
+        <div class="info-row" *ngIf="storage?.usedGB">
+            <span class="info-label">Device Storage:</span>
+            <span class="info-value"> {{storage.usedGB+"/"+storage.totalGB}}</span>
+        </div>
+    </div>
+    <mat-dialog-actions align="end">
+        <!-- <button mat-raised-button (click)="clearDownloads(true)">
+            Reset storage
+        </button>
+        <button mat-raised-button (click)="clearDownloads(false)">
+            Clear downloads
+        </button> -->
+        <button mat-raised-button mat-dialog-close cdkFocusInitial>
+            Close
+        </button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #logoutconfirmsecond>
+    <h2 mat-dialog-title style="color: #ff4081; text-align: center;">Do you want to save device ID?</h2>
+    <mat-dialog-content class="mat-typography">
+        <!-- <h3>Buttons & Actions</h3>
+        <ul>
+            <li><strong style="font-weight: 400; color: #ff4081;">Close</strong> → Cancel, nothing happens.</li>
+            <li><strong style="font-weight: 400; color: #ff4081;">No, logout</strong> → Logout without saving UID.</li>
+            <li><strong style="font-weight: 400; color: #ff4081;">Yes, logout</strong> → Logout and save UID.</li>
+        </ul> -->
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <!-- <button mat-raised-button mat-dialog-close>
+            Close
+        </button> -->
+        <button mat-raised-button [mat-dialog-close]="'no'">Reset</button>
+        <button mat-raised-button [mat-dialog-close]="'yes'" cdkFocusInitial>Remeber</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #logoutconfirmfirst>
+    <h2 mat-dialog-title style="color: #ff4081; text-align: center;">Are you sure you want to logout?</h2>
+    <mat-dialog-content class="mat-typography">
+
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>
+            Close
+        </button>
+        <button #yesBtn mat-raised-button (click)="openLogoutDialog()">Yes, Logout</button>
+    </mat-dialog-actions>
+</ng-template>
+<section class="menu">
+    <div class="row g-3 my-1">
+        <div class="col-12 col-md-6" *ngFor="let option of radioOptions">
+            <button mat-raised-button (click)="openDialog(option.type)"
+                *ngIf="option?.type=='logoutconfirm' ? !isLoginPage :true"
+                class="w-100 h-100 d-flex flex-column align-items-center justify-content-center p-3 menu-group">
+                <img [src]="option?.icon" [alt]="option?.title || 'icon'" height="100" class="mb-2" />
+                <br>
+                <span>{{ option?.title }}</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<ng-template #modeConfiguration>
+    <h2 mat-dialog-title style="color: #ff4081; text-align: center;">Mode Configuration</h2>
+    <mat-dialog-content class="mat-typography">
+        <mat-slide-toggle style="background-color:cornsilk; width: 100%;padding: 10px;border-radius: 4px;"
+            (change)="onChangeModeConfiguration(true)" [(ngModel)]="isChecked">
+            : {{isChecked ? "Selected as pendrive ":"Selected as schedule "}}</mat-slide-toggle>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-raised-button mat-dialog-close>
+            Close
+        </button>
+    </mat-dialog-actions>
+</ng-template>
+
+
+
+<!-- LOGOUT LOADER OVERLAY -->
+<div class="logout-loader" *ngIf="isLoggingOut">
+    <div class="spinner"></div>
+</div>
