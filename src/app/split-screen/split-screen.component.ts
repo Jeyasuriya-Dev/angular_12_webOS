@@ -838,6 +838,7 @@ export class SplitScreenComponent implements OnInit, OnDestroy {
 		this.zoneCompletionMap[zoneId] = true;
 		const allCompleted = this.zoneinfo.every(zone => this.zoneCompletionMap[zone.id]);
 		// console.log(this.zoneCompletionMap)
+		
 		// console.log("Zonecompleted with ZoneID -",zoneId,allCompleted);
 
 		this.logger.log('onZoneComplete', 'Zone completed', {
