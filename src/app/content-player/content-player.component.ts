@@ -183,7 +183,7 @@ export class ContentPlayerComponent implements OnChanges {
 			currentFile.Mediafile_id = Date.now();
 		}
 
-		console.log("Showing file:", this.currentIndex, currentFile);
+		// console.log("Showing file:", this.currentIndex, currentFile);
 		this.activePlayingId = currentFile.Mediafile_id;
 
 		this.logger.info('showCurrentSlide', 'Playing media', {
@@ -353,7 +353,7 @@ export class ContentPlayerComponent implements OnChanges {
 		const isLastMedia = this.currentIndex === this.filesData.length - 1;
 
 		if (isLastMedia) {
-			console.log("emitting from nextSlideAndShow", isLastMedia)
+			// console.log("emitting from nextSlideAndShow", isLastMedia)
 			this.zoneComplete.emit(this.zoneId);
 			
 		}
