@@ -655,8 +655,7 @@ export class SplitScreenComponent implements OnInit, OnDestroy {
 			this.bottomScrollers = this.scrollers.filter(s => s.type === 'BOTTOM');
 			this.splitCurrentIndex = 0;
 			this.logger.info('loadMediaFiles', 'Media initialized, starting playback');
-			console.log(this.mediacountforServerDefault, "From loadmediafiles()")
-			console.log(res.mediafile_count, "response mediafilecount from loadmediafiles()")
+			// console.log(this.mediacountforServerDefault, "From loadmediafiles()")
 			this.showCurrentSlide();
 			if (this.canPlayScroller()) {
 				this.startTopScroller();
@@ -838,8 +837,8 @@ export class SplitScreenComponent implements OnInit, OnDestroy {
 	onZoneComplete(zoneId: any) {
 		this.zoneCompletionMap[zoneId] = true;
 		const allCompleted = this.zoneinfo.every(zone => this.zoneCompletionMap[zone.id]);
-		console.log(this.zoneCompletionMap)
-		console.log("Zonecompleted with ZoneID -",zoneId,allCompleted);
+		// console.log(this.zoneCompletionMap)
+		// console.log("Zonecompleted with ZoneID -",zoneId,allCompleted);
 
 		this.logger.log('onZoneComplete', 'Zone completed', {
 			zoneId,
