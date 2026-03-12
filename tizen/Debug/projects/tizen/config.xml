@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns:tizen="http://tizen.org/ns/widgets"
     xmlns="http://www.w3.org/ns/widgets" id="http://yourdomain/tizen" version="1.1.0" viewmodes="maximized">
-    <tizen:application id="OMBoEKMi2M.tizen" package="OMBoEKMi2M" required_version="2.3"/>
+    <tizen:application id="OMBoEKMi2M.tizen" package="OMBoEKMi2M" required_version="6.5"/>
     <feature name="http://tizen.org/feature/screen.size.normal.1080.1920"/>
     <content src="www/index.html"/>
     <icon src="icon.png"/>
-    <name>IQ_WORLD_PLAYER</name>
+    <name>IQ WORLD PLAYER</name>
     <!-- Profile (Samsung Smart TV) -->
     <tizen:profile name="tv-samsung"/>
     <!-- Metadata -->

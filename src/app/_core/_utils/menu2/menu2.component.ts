@@ -88,7 +88,7 @@ export class Menu2Component {
 		private fsService: FilesystemService,
 		private logger: LoggerService
 	) {
-		this.deviceInfo = JSON.parse(sessionStorage.getItem('device') || '{}');
+		this.loadDeviceInfo();
 		this.isLoginPage = this.router.url == '/login' && sessionStorage.getItem("isLogin") != "true";
 
 		this.logger.info('Menu2.constructor', 'Menu2 initialized', {
@@ -109,9 +109,45 @@ export class Menu2Component {
 		document.removeEventListener('keydown', this.handleBackKey);
 	}
 
+	private loadDeviceInfo() {
+		const sessionDevice = sessionStorage.getItem('device');
+
+		if (sessionDevice) {
+			try {
+				this.deviceInfo = JSON.parse(sessionDevice);
+				return;
+			} catch (err) {
+				this.logger.error('loadDeviceInfo', 'Failed to parse session device', err);
+			}
+		}
+
+		const rememberEnabled = localStorage.getItem('rememberDevice') === 'true';
+		const rememberedUsername = rememberEnabled ? localStorage.getItem('username') : null;
+		const cachedDevice = rememberEnabled ? localStorage.getItem('deviceCache') : null;
+
+		if (cachedDevice) {
+			try {
+				this.deviceInfo = JSON.parse(cachedDevice);
+				return;
+			} catch (err) {
+				this.logger.error('loadDeviceInfo', 'Failed to parse cached device', err);
+			}
+		}
+
+		if (rememberedUsername) {
+			this.deviceInfo = { username: rememberedUsername };
+			return;
+		}
+
+		this.deviceInfo = {};
+	}
+
 
 	openDialog(type: string) {
 		this.logger.info('Dialog', 'Open requested', type);
+
+		// Refresh device info so login page shows remembered UID
+		this.loadDeviceInfo();
 
 		// Define all dialog mappings
 		this.dialogMap = {
@@ -220,6 +256,9 @@ export class Menu2Component {
 				//  Remember
 				localStorage.setItem('rememberDevice', 'true');
 				localStorage.setItem('username', this.deviceInfo?.username || '');
+				// Cache full device info so it can be shown on login page
+				const sessionDevice = sessionStorage.getItem('device');
+				localStorage.setItem('deviceCache', sessionDevice || JSON.stringify(this.deviceInfo || {}));
 				this.logger.info('Logout', 'Device remembered');
 			}
 
@@ -227,6 +266,7 @@ export class Menu2Component {
 				//  Reset
 				localStorage.removeItem('rememberDevice');
 				localStorage.removeItem('username');
+				localStorage.removeItem('deviceCache');
 				this.logger.info('Logout', 'Device reset');
 			}
 

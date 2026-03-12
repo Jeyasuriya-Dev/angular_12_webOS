@@ -1,12 +1,17 @@
 export class clienturl {
 
     static CURRENT_VERSION(): String {
-        return "v1.1"
+        return "v1.0"
     }
 
     static RELEASE_DATE(): String {
 
         return "Monday, 18 August 2025";
+    }
+
+    static STORE_RELEASE(): String {
+
+        return "Thursday, 12 March 2026";
     }
 
     static LOGIC_LOGS(): boolean {
